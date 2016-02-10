@@ -5,7 +5,7 @@ import { secondsToTime } from '../lib/time';
 const Timer = ({timeLeft, onRemove}) => (
   <li>
     {secondsToTime(timeLeft)}
-    <button onClick={() => onRemove()}>x</button>
+    <button onClick={onRemove}>x</button>
   </li>
 );
 
