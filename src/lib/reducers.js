@@ -1,3 +1,13 @@
+import _ from 'lodash';
+
+function updateTimer(state, action, value) {
+  return [
+    ...state.slice(0, action.index),
+    _.extend({}, state[action.index], value),
+    ...state.slice(action.index + 1)
+  ];
+}
+
 export default {
   timers (state = [], action = {}) {
     switch (action.type) {
@@ -6,7 +16,16 @@ export default {
       case 'ADD_TIMER':
         return state.concat(action.timer);
       case 'REMOVE_TIMER':
-        return state.slice(0, action.index).concat(state.slice(action.index + 1, state.length));
+        return [
+          ...state.slice(0, action.index),
+          ...state.slice(action.index + 1)
+        ];
+      case 'EDIT_TIMER':
+        return updateTimer(state, action, { isEditing: action.isEditing })
+      case 'UPDATE_TIMER_TIME':
+        return updateTimer(state, action, { time: action.time, timeLeft: action.time })
+      case 'UPDATE_TIMER_TIME_LEFT':
+        return updateTimer(state, action, { timeLeft: action.timeLeft })
       default:
         return state;
     }
