@@ -14,7 +14,12 @@ export default {
       case 'REPLACE_TIMERS':
         return action.timers;
       case 'ADD_TIMER':
-        return state.concat(action.timer);
+        return state.concat({
+          isEditing: false,
+          isRunning: false,
+          time: 0,
+          timeLeft: 0,
+        });
       case 'REMOVE_TIMER':
         return [
           ...state.slice(0, action.index),

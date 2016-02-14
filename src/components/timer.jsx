@@ -4,13 +4,23 @@ import Modal from './modal';
 import propTypes from '../lib/prop-types';
 import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time';
 
+function adjustedTime(time) {
+  if (time < 0) {
+    return 60 + time;
+  } else {
+    return time >= 60 ? time - 60 : time;
+  }
+}
+
 function editor (props) {
   if (!props.isEditing) { return null; }
 
   const { minutes, seconds } = toMinutesAndSeconds(props.time);
 
-  const changeMinutes = amount => () => props.onUpdateTime(fromMinutesAndSeconds(minutes + amount, seconds));
-  const changeSeconds = amount => () => props.onUpdateTime(fromMinutesAndSeconds(minutes, seconds + amount));
+  const changeMinutes = amount => () =>
+    props.onUpdateTime(fromMinutesAndSeconds(adjustedTime(minutes + amount), seconds));
+  const changeSeconds = amount => () =>
+    props.onUpdateTime(fromMinutesAndSeconds(minutes, adjustedTime(seconds + amount)));
 
   return (
     <Modal onClose={() => props.onEdit(false)}>

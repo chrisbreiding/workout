@@ -27,15 +27,7 @@ export function retrieveData () {
 
 export function addTimer () {
   return (dispatch, getState) => {
-    dispatch({
-      type: 'ADD_TIMER',
-      timer: {
-        isEditing: false,
-        isRunning: false,
-        time: 0,
-        timeLeft: 0,
-      }
-    });
+    dispatch({ type: 'ADD_TIMER' });
     saveTimers(getState());
   };
 }
