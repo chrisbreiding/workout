@@ -1,8 +1,37 @@
 .timer {
   margin: 0.6em;
 
+  .time-left {
+    font-size: 2em;
+  }
+
+  .pause {
+    display: none;
+  }
+
+  &.running {
+    .start {
+      display: none;
+    }
+
+    .pause {
+      display: inline-block;
+    }
+  }
+
+  &.times-up {
+    .time-left {
+      color: red;
+    }
+
+    .start,
+    .pause {
+      display: none;
+    }
+  }
+
   span {
-    display: inline-block
+    display: inline-block;
   }
 }
 

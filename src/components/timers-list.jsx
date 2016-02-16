@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from '../lib/prop-types';
-import { addTimer, removeTimer, editTimer, startTimer, stopTimer, resetTimer, updateTimerTime, updateTimerTimeLeft } from '../lib/actions';
+import { addTimer, removeTimer, updateTimerTime, updateTimerTimeLeft } from '../lib/actions';
 import Timer from './timer';
 
 const TimersList = ({ timers, dispatch }) => (
@@ -12,6 +12,7 @@ const TimersList = ({ timers, dispatch }) => (
         <Timer
           key={index}
           onUpdateTime={time => dispatch(updateTimerTime(index, time))}
+          onUpdateTimeLeft={timeLeft => dispatch(updateTimerTimeLeft(index, timeLeft))}
           onReset={() => dispatch(updateTimerTimeLeft(index, timer.time))}
           onRemove={() => dispatch(removeTimer(index))}
           {...timer}
