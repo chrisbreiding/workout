@@ -15,8 +15,6 @@ export default {
         return action.timers;
       case 'ADD_TIMER':
         return state.concat({
-          isEditing: false,
-          isRunning: false,
           time: 0,
           timeLeft: 0,
         });
@@ -25,8 +23,6 @@ export default {
           ...state.slice(0, action.index),
           ...state.slice(action.index + 1)
         ];
-      case 'EDIT_TIMER':
-        return updateTimer(state, action, { isEditing: action.isEditing })
       case 'UPDATE_TIMER_TIME':
         return updateTimer(state, action, { time: action.time, timeLeft: action.time })
       case 'UPDATE_TIMER_TIME_LEFT':

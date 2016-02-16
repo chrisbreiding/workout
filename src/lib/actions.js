@@ -11,17 +11,10 @@ function saveTimers (data) {
   }));
 }
 
-function timersData (timers) {
-  return _.map(timers, timer => _.extend(timer, {
-    isEditing: false,
-    isRunning: false
-  }));
-}
-
 export function retrieveData () {
   return (dispatch) => {
     const data = JSON.parse(localStorage[lsKey] || '{}');
-    dispatch({ type: 'REPLACE_TIMERS', timers: timersData(data.timers) || [] });
+    dispatch({ type: 'REPLACE_TIMERS', timers: data.timers || [] });
   };
 }
 
@@ -37,18 +30,6 @@ export function removeTimer (index) {
     dispatch({ type: 'REMOVE_TIMER', index });
     saveTimers(getState());
   };
-}
-
-export function editTimer (index, isEditing) {
-  return { type: 'EDIT_TIMER', index, isEditing };
-}
-
-export function startTimer (index) {
-  return { type: 'START_TIMER', index };
-}
-
-export function stopTimer (index) {
-  return { type: 'STOP_TIMER', index };
 }
 
 export function updateTimerTime (index, time) {

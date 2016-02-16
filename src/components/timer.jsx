@@ -1,30 +1,42 @@
 import cs from 'classnames';
-import React from 'react';
+import React, { createClass } from 'react';
 import Editor from './timer-editor';
 import propTypes from '../lib/prop-types';
 import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time';
 
-function Timer (props) {
-  const { minutes, seconds } = toMinutesAndSeconds(props.timeLeft);
+export default createClass({
+  propTypes: propTypes.timer,
 
-  function edit () {
-    props.onReset();
-    props.onEdit(!props.isEditing);
-  }
+  getInitialState () {
+    return { isEditing: false };
+  },
 
-  return (
-    <li className={cs('timer', { editing: props.isEditing })}>
-      <span onClick={edit}>
-        <span>{minutes}:{padNumber(seconds)}</span>
-      </span>
-      <button className="start" onClick={props.onStart}>Start</button>
-      <button className="stop" onClick={props.onStop}>Stop</button>
-      <button className="remove" onClick={props.onRemove}>x</button>
-      {props.isEditing ? <Editor {...props} /> : null}
-    </li>
-  );
-}
+  render () {
+    const { minutes, seconds } = toMinutesAndSeconds(this.props.timeLeft);
 
-Timer.propTypes = propTypes.timer;
+    return (
+      <li className={cs('timer', { editing: this.props.isEditing })}>
+        <span onClick={() => this._edit(true)}>
+          <span>{minutes}:{padNumber(seconds)}</span>
+        </span>
+        <button className="start" onClick={this._start}>Start</button>
+        <button className="stop" onClick={this._stop}>Stop</button>
+        <button className="remove" onClick={this.props.onRemove}>x</button>
+        {this.state.isEditing ? <Editor {...this.props} onClose={() => this._edit(false)} /> : null}
+      </li>
+    );
+  },
 
-export default Timer;
+  _start () {
+
+  },
+
+  _stop () {
+
+  },
+
+  _edit (isEditing) {
+    this.props.onReset();
+    this.setState({ isEditing });
+  },
+});
