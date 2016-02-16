@@ -21,9 +21,20 @@ export default createClass({
         </span>
         <button className="start" onClick={this._start}>Start</button>
         <button className="stop" onClick={this._stop}>Stop</button>
-        <button className="remove" onClick={this.props.onRemove}>x</button>
-        {this.state.isEditing ? <Editor {...this.props} onClose={() => this._edit(false)} /> : null}
+        {this._editor()}
       </li>
+    );
+  },
+
+  _editor () {
+    if (!this.state.isEditing) { return null; }
+
+    return (
+      <Editor
+        {...this.props}
+        onClose={() => this._edit(false)}
+        onRemove={this.props.onRemove}
+      />
     );
   },
 

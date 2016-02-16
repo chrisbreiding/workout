@@ -20,7 +20,7 @@ function TimerEditor (props) {
     props.onUpdateTime(fromMinutesAndSeconds(minutes, adjustedTime(seconds + amount)));
 
   return (
-    <Modal onClose={props.onClose}>
+    <Modal onOk={props.onClose}>
       <div className="timer-editor">
         <div className="wrap">
           <button onClick={changeMinutes(5)}><i className="fa fa-chevron-up"></i> 5</button>
@@ -44,6 +44,7 @@ function TimerEditor (props) {
           <button onClick={changeSeconds(-5)}><i className="fa fa-chevron-down"></i> 5</button>
         </div>
       </div>
+      <button onClick={props.onRemove}>Remove</button>
     </Modal>
   );
 }
