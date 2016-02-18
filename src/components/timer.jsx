@@ -1,4 +1,5 @@
 import cs from 'classnames';
+import { Howl } from 'howler';
 import React, { createClass } from 'react';
 import Editor from './timer-editor';
 import propTypes from '../lib/prop-types';
@@ -11,7 +12,7 @@ export default createClass({
     return {
       isEditing: false,
       isRunning: false,
-      isTimeUp: false
+      isTimeUp: !this.props.timeLeft
     };
   },
 
@@ -42,7 +43,7 @@ export default createClass({
   },
 
   _resetButton () {
-    if (this.props.time === this.props.timeLeft || this.intervalId) { return null; }
+    if (this.props.time === this.props.timeLeft || this.state.isRunning) { return null; }
 
     return (
       <button className="reset" onClick={this._reset}>
@@ -64,6 +65,7 @@ export default createClass({
   },
 
   _reset () {
+    if (this.sound) { this.sound.stop(); }
     this.setState({ isTimeUp: false });
     this.props.onReset();
   },
@@ -77,15 +79,23 @@ export default createClass({
       const newTimeLeft = this.props.timeLeft - 1;
       this.props.onUpdateTimeLeft(newTimeLeft);
       if (newTimeLeft === 0) {
-        this._pause();
-        this.setState({ isTimeUp: true });
+        this._timesUp();
       }
     }, 1000);
   },
 
+  _timesUp () {
+    this._pause();
+    this.setState({ isTimeUp: true });
+    this.sound = new Howl({
+      urls: ['sounds/shell.mp3'],
+      autoplay: true,
+      loop: true
+    });
+  },
+
   _pause () {
     clearInterval(this.intervalId);
-    this.intervalId = null;
     this.setState({ isRunning: false });
   },
 
