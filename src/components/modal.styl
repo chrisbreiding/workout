@@ -17,57 +17,8 @@ body.modal-dialog-present {
 
 .modal-dialog {
   background: light-color;
-  border: solid 1px lighten(dark-color, 10%);
   border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
+  margin: 0.8em;
   max-height: 90%;
-  position: relative;
-
-  p {
-    margin-bottom: 1.2em;
-  }
-
-  header,
-  .modal-dialog-content,
-  footer {
-    padding: 1em 1.5em;
-  }
-
-  .modal-dialog-content {
-    overflow-y: scroll;
-  }
-
-  .modal-controls {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .ok {
-    margin-left: 0.6em;
-  }
-
-  .cancel {
-    background: neutral-color;
-    color: dark-color;
-
-    +hover() {
-      background: darken(neutral-color, 20%);
-    }
-  }
-
-  .close {
-    background: none;
-    border: none;
-    color: lighten(dark-color, 40%);
-    font-size: 1.2em;
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    +hover() {
-      color: dark-color;
-    }
-  }
+  overflow: scroll;
 }
