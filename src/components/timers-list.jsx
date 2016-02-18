@@ -19,7 +19,12 @@ const TimersList = ({ timers, dispatch }) => (
         />
       ))}
     </ul>
-    <button onClick={() => dispatch(addTimer())}>Add Timer</button>
+    <button
+      className="add-timer"
+      onClick={() => dispatch(addTimer())}
+    >
+      <i className="fa fa-plus"></i>
+    </button>
   </div>
 );
 

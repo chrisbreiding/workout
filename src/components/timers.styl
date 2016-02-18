@@ -1,0 +1,105 @@
+.timers-list {
+  padding: 0.6em;
+}
+
+.timer {
+  display: flex;
+  margin-bottom: 0.6em;
+
+  .time-left {
+    font-size: 3em;
+  }
+
+  .start
+  .pause,
+  .reset {
+    display: none;
+  }
+
+  &.can-start .start,
+  &.running .pause,
+  &.can-reset .reset {
+    display: inline-block;
+  }
+
+  &.times-up {
+    .time-left {
+      color: red;
+    }
+
+    .start,
+    .pause {
+      display: none;
+    }
+  }
+
+  span {
+    display: inline-block;
+  }
+
+  button {
+    font-size: 1.6em;
+    margin-left: 0.6em;
+    padding: 0 0.8em;
+  }
+}
+
+.timer-editor {
+  main {
+    display: flex;
+    padding: 0.8em;
+    justify-content: center;
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      font-size: 4em;
+    }
+
+    .separator {
+      button {
+        visibility: hidden;
+
+        &:before {
+          content: '\00a0'
+        }
+      }
+    }
+
+    button {
+      margin: 0.4em 0;
+      padding: 0.6em 0;
+
+      i {
+        margin-right: 0.4em;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8em;
+
+    .remove {
+      background: error-color;
+      border-color: darken(error-color, 20%);
+      color: light-color;
+    }
+  }
+}
+
+.add-timer {
+  box-sizing: border-box;
+  font-size: 2em;
+  margin-top: 1em;
+  padding: 0.2em;
+  width: 100%;
+
+  i {
+    margin-right: 0.4em;
+  }
+}

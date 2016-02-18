@@ -12,7 +12,7 @@ export default createClass({
     return {
       isEditing: false,
       isRunning: false,
-      isTimeUp: !this.props.timeLeft
+      isTimeUp: this.props.time && !this.props.timeLeft
     };
   },
 
@@ -22,6 +22,8 @@ export default createClass({
     const className = cs('timer', {
       editing: this.state.isEditing,
       running: this.state.isRunning,
+      'can-start': this._canStart(),
+      'can-reset': this._canReset(),
       'times-up': this.state.isTimeUp
     });
 
@@ -36,20 +38,20 @@ export default createClass({
         <button className="pause" onClick={this._pause}>
           <i className="fa fa-pause"></i>
         </button>
-        {this._resetButton()}
+        <button className="reset" onClick={this._reset}>
+          <i className="fa fa-refresh"></i>
+        </button>
         {this._editor()}
       </li>
     );
   },
 
-  _resetButton () {
-    if (this.props.time === this.props.timeLeft || this.state.isRunning) { return null; }
+  _canStart () {
+    return this.props.timeLeft > 0 && !this.state.isRunning;
+  },
 
-    return (
-      <button className="reset" onClick={this._reset}>
-        <i className="fa fa-refresh"></i>
-      </button>
-    );
+  _canReset () {
+    return this.props.time !== this.props.timeLeft && !this.state.isRunning;
   },
 
   _editor () {
