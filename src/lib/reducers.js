@@ -8,16 +8,18 @@ function updateTimer(state, action, value) {
   ];
 }
 
+const newTimer = () => ({
+  time: 0,
+  timeLeft: 0,
+});
+
 export default {
-  timers (state = [], action = {}) {
+  timers (state = [newTimer()], action = {}) {
     switch (action.type) {
       case 'REPLACE_TIMERS':
         return action.timers;
       case 'ADD_TIMER':
-        return state.concat({
-          time: 0,
-          timeLeft: 0,
-        });
+        return state.concat(newTimer());
       case 'REMOVE_TIMER':
         return [
           ...state.slice(0, action.index),

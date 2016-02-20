@@ -14,7 +14,9 @@ function saveTimers (data) {
 export function retrieveData () {
   return (dispatch) => {
     const data = JSON.parse(localStorage[lsKey] || '{}');
-    dispatch({ type: 'REPLACE_TIMERS', timers: data.timers || [] });
+    if (data.timers) {
+      dispatch({ type: 'REPLACE_TIMERS', timers: data.timers || [] });
+    }
   };
 }
 
