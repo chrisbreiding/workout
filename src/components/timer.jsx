@@ -67,7 +67,7 @@ export default createClass({
   },
 
   _reset () {
-    if (this.sound) { this.sound.stop(); }
+    this.props.onStopSound();
     this.setState({ isTimeUp: false });
     this.props.onReset();
   },
@@ -89,11 +89,7 @@ export default createClass({
   _timesUp () {
     this._pause();
     this.setState({ isTimeUp: true });
-    this.sound = new Howl({
-      urls: ['sounds/shell.mp3'],
-      autoplay: true,
-      loop: true
-    });
+    this.props.onPlaySound();
   },
 
   _pause () {

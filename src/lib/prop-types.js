@@ -9,6 +9,8 @@ const timer = {
   onRemove: PT.func.isRequired,
   onUpdateTime: PT.func.isRequired,
   onUpdateTimeLeft: PT.func.isRequired,
+  onPlaySound: PT.func.isRequired,
+  onStopSound: PT.func.isRequired
 };
 
 const timers = {
