@@ -2,7 +2,7 @@ import cs from 'classnames';
 import { Howl } from 'howler';
 import React, { createClass } from 'react';
 import Editor from './timer-editor';
-import propTypes from '../lib/prop-types';
+import * as propTypes from '../lib/prop-types';
 import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time';
 
 export default createClass({

@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './modal';
-import propTypes from '../lib/prop-types';
+import * as propTypes from '../lib/prop-types';
 import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time';
 
 function adjustedTime(time) {

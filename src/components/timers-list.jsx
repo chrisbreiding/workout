@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import propTypes from '../lib/prop-types';
-import { addTimer, removeTimer, updateTimerTime, updateTimerTimeLeft } from '../lib/actions';
+import * as propTypes from '../lib/prop-types';
+import { addTimer, removeTimer, updateTimerTime, updateTimerTimeLeft } from '../lib/timer-actions';
 import Timer from './timer';
 
 const sound = new Howl({

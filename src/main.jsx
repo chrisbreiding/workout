@@ -4,7 +4,7 @@ import React from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { render } from 'react-dom';
-import reducers from './lib/reducers';
+import * as reducers from './lib/reducers';
 import App from './components/app';
 
 fastclick.attach(document.body);
