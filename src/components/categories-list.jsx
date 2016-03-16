@@ -1,24 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as propTypes from '../lib/prop-types';
-import { addCategory, removeCategory, updateCategory } from '../lib/category-actions';
+import { pluckState } from '../lib/util';
+import { addCategory } from '../lib/actions';
 import Category from './category';
 
-const CategoriesList = ({ categories, dispatch }) => (
+const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
   <div className="categories-list">
     <ul>
       {categories.map((category) => (
         <Category
           key={category.id}
-          onRemove={() => dispatch(removeCategory(category))}
+          exercises={exercises}
+          weights={weights}
           {...category}
         />
       ))}
     </ul>
-    <button
-      className="add-category"
-      onClick={() => dispatch(addCategory())}
-    >
+    <button className="add-category" onClick={() => dispatch(addCategory())}>
       <i className="fa fa-plus"></i>
     </button>
   </div>
@@ -26,4 +25,4 @@ const CategoriesList = ({ categories, dispatch }) => (
 
 CategoriesList.propTypes = propTypes.categories;
 
-export default connect(({categories}) => ({categories}))(CategoriesList);
+export default connect(pluckState('categories', 'exercises', 'weights'))(CategoriesList);

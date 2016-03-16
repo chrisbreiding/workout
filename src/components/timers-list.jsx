@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import * as propTypes from '../lib/prop-types';
-import { addTimer, removeTimer, updateTimerTime, updateTimerTimeLeft } from '../lib/timer-actions';
+import { addTimer, removeTimer, updateTimer } from '../lib/actions';
 import Timer from './timer';
 
 const sound = new Howl({
@@ -16,23 +16,19 @@ function stopSound () { sound.stop(); }
 const TimersList = ({ timers, dispatch }) => (
   <div className="timers-list">
     <ul>
-      {timers.map((timer, index) => (
+      {timers.map((timer) => (
         <Timer
-          key={index}
-          onUpdateTime={time => dispatch(updateTimerTime(index, time))}
-          onUpdateTimeLeft={timeLeft => dispatch(updateTimerTimeLeft(index, timeLeft))}
-          onReset={() => dispatch(updateTimerTimeLeft(index, timer.time))}
-          onRemove={() => dispatch(removeTimer(index))}
+          key={timer.id}
+          onUpdate={data => dispatch(updateTimer(data))}
+          onReset={() => dispatch(updateTimer({ id: timer.id, timeLeft: timer.time }))}
+          onRemove={() => dispatch(removeTimer({ id: timer.id }))}
           onPlaySound={playSound}
           onStopSound={stopSound}
           {...timer}
         />
       ))}
     </ul>
-    <button
-      className="add-timer"
-      onClick={() => dispatch(addTimer())}
-    >
+    <button className="add-timer" onClick={() => dispatch(addTimer())}>
       <i className="fa fa-plus"></i>
     </button>
   </div>

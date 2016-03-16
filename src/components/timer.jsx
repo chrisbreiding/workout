@@ -79,7 +79,7 @@ export default createClass({
 
     this.intervalId = setInterval(() => {
       const newTimeLeft = this.props.timeLeft - 1;
-      this.props.onUpdateTimeLeft(newTimeLeft);
+      this.props.onUpdate({ id: this.props.id, timeLeft: newTimeLeft });
       if (newTimeLeft === 0) {
         this._timesUp();
       }
