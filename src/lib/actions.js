@@ -42,10 +42,7 @@ function dispatchAndSave (type, data) {
 export function retrieveData () {
   return (dispatch) => {
     const data = JSON.parse(localStorage[lsKey] || '{}');
-    dispatch({ type: 'REPLACE_TIMERS', timers: data.timers || [] });
-    dispatch({ type: 'REPLACE_WEIGHTS', weights: data.weights || {} });
-    dispatch({ type: 'REPLACE_EXERCISES', exercises: data.exercises || {} });
-    dispatch({ type: 'REPLACE_CATEGORIES', categories: data.categories || [] });
+    dispatch({ type: 'REPLACE_DATA', data });
   };
 }
 

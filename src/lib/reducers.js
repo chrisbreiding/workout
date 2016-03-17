@@ -47,8 +47,8 @@ const newTimer = (timers) => ({
 
 export const timers = (state = [newTimer()], action = {}) => {
   switch (action.type) {
-    case 'REPLACE_TIMERS':
-      return action.timers;
+    case 'REPLACE_DATA':
+      return action.data.timers || state;
     case 'ADD_TIMER':
       return state.concat(newTimer(state));
     case 'REMOVE_TIMER':
@@ -68,8 +68,8 @@ const newCategory = (categories) => ({
 
 export const categories = (state = [], action = {}) => {
   switch (action.type) {
-    case 'REPLACE_CATEGORIES':
-      return action.categories;
+    case 'REPLACE_DATA':
+      return action.data.categories || state;
     case 'ADD_CATEGORY':
       return state.concat(newCategory(state));
     case 'REMOVE_CATEGORY':
@@ -98,8 +98,8 @@ export const categories = (state = [], action = {}) => {
 
 export const exercises = (state = {}, action = {}) => {
   switch (action.type) {
-    case 'REPLACE_EXERCISES':
-      return action.exercises;
+    case 'REPLACE_DATA':
+      return action.data.exercises || state;
     case 'ADD_EXERCISE':
       return addItemToObject(state, action.data);
     case 'REMOVE_EXERCISE':
@@ -128,8 +128,8 @@ export const exercises = (state = {}, action = {}) => {
 
 export const weights = (state = {}, action = {}) => {
   switch (action.type) {
-    case 'REPLACE_WEIGHTS':
-      return action.weights;
+    case 'REPLACE_DATA':
+      return action.data.weights || state;
     case 'ADD_WEIGHT':
       return addItemToObject(state, action.data);
     case 'REMOVE_WEIGHT':
