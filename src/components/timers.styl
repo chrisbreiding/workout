@@ -1,25 +1,50 @@
 .timers-list {
-  padding: 0.6em;
+  background: dark-color;
+  color: light-color;
 }
 
 .timer {
+  border-top: solid 1px lighten(dark-color, 10%);
+  border-bottom: solid 1px darkest-color;
   display: flex;
-  margin-bottom: 0.6em;
+  padding: 0.4em 1em;
 
   .time-left {
-    font-size: 3em;
+    font-family: digital, monospace;
+    font-size: 4em;
+    margin-right: 0.2em;
+  }
+
+  .control {
+    display: flex;
+    width: 4em;
   }
 
   .start
   .pause,
   .reset {
     display: none;
+    flex-grow: 1;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .start {
+    color: success-color;
+  }
+
+  .pause {
+    color: primary-color;
+  }
+
+  .reset {
+    color: error-color;
   }
 
   &.can-start .start,
   &.running .pause,
   &.can-reset .reset {
-    display: inline-block;
+    display: block;
   }
 
   &.times-up {
@@ -36,19 +61,14 @@
   span {
     display: inline-block;
   }
-
-  button {
-    font-size: 1.6em;
-    margin-left: 0.6em;
-    padding: 0 0.8em;
-  }
 }
 
 .add-timer {
+  background: darkest-color;
   box-sizing: border-box;
+  color: neutral-color;
   font-size: 2em;
-  margin-top: 1em;
-  padding: 0.2em;
+  padding: 0.4em;
   width: 100%;
 
   i {

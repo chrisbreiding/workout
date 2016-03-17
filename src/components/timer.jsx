@@ -32,15 +32,19 @@ export default createClass({
         <span className="time-left" onClick={() => this._edit(true)}>
           <span>{minutes}:{padNumber(seconds)}</span>
         </span>
-        <button className="start" onClick={this._start}>
-          <i className="fa fa-play"></i>
-        </button>
-        <button className="pause" onClick={this._pause}>
-          <i className="fa fa-pause"></i>
-        </button>
-        <button className="reset" onClick={this._reset}>
-          <i className="fa fa-refresh"></i>
-        </button>
+        <div className="control">
+          <button className="start" onClick={this._start}>
+            <i className="fa fa-play"></i>
+          </button>
+          <button className="pause" onClick={this._pause}>
+            <i className="fa fa-pause"></i>
+          </button>
+        </div>
+        <div className="control">
+          <button className="reset" onClick={this._reset}>
+            <i className="fa fa-refresh"></i>
+          </button>
+        </div>
         {this._editor()}
       </li>
     );

@@ -18,13 +18,13 @@ export default createClass({
       <li onClick={() => this.setState({ isEditing: true })}>
         <h2>{this.props.name}</h2>
 
-        <ul>
+        <ul className="exercises-list">
           {exercises.map(exercise => {
             const weights = exercise.weightIds.map(id => this.props.weights[id]);
             return (
               <li key={exercise.id}>
                 <h3>{exercise.name}:</h3>
-                <ul>
+                <ul className="weights-list">
                   {weights.map(weight => (
                     <li key={weight.id}>{weight.amount}</li>
                   ))}
