@@ -24,27 +24,29 @@ function TimerEditor (props) {
   };
 
   return (
-    <Editor onRemove={props.onRemove} onClose={props.onClose}>
-      <div className="wrap">
-        <button onClick={changeMinutes(5)}><i className="fa fa-chevron-up"></i> 5</button>
-        <button onClick={changeMinutes(1)}><i className="fa fa-chevron-up"></i> 1</button>
-        <div className="content">{padNumber(minutes)}</div>
-        <button onClick={changeMinutes(-1)}><i className="fa fa-chevron-down"></i> 1</button>
-        <button onClick={changeMinutes(-5)}><i className="fa fa-chevron-down"></i> 5</button>
-      </div>
-      <div className="wrap separator">
-        <button></button>
-        <button></button>
-        <div className="content">:</div>
-        <button></button>
-        <button></button>
-      </div>
-      <div className="wrap">
-        <button onClick={changeSeconds(5)}><i className="fa fa-chevron-up"></i> 5</button>
-        <button onClick={changeSeconds(1)}><i className="fa fa-chevron-up"></i> 1</button>
-        <div className="content">{padNumber(seconds)}</div>
-        <button onClick={changeSeconds(-1)}><i className="fa fa-chevron-down"></i> 1</button>
-        <button onClick={changeSeconds(-5)}><i className="fa fa-chevron-down"></i> 5</button>
+    <Editor className="timer-editor" onRemove={props.onRemove} onClose={props.onClose}>
+      <div>
+        <div className="wrap">
+          <button onClick={changeMinutes(5)}><i className="fa fa-chevron-up"></i> 5</button>
+          <button onClick={changeMinutes(1)}><i className="fa fa-chevron-up"></i> 1</button>
+          <div className="content">{padNumber(minutes)}</div>
+          <button onClick={changeMinutes(-1)}><i className="fa fa-chevron-down"></i> 1</button>
+          <button onClick={changeMinutes(-5)}><i className="fa fa-chevron-down"></i> 5</button>
+        </div>
+        <div className="wrap separator">
+          <button></button>
+          <button></button>
+          <div className="content">:</div>
+          <button></button>
+          <button></button>
+        </div>
+        <div className="wrap">
+          <button onClick={changeSeconds(5)}><i className="fa fa-chevron-up"></i> 5</button>
+          <button onClick={changeSeconds(1)}><i className="fa fa-chevron-up"></i> 1</button>
+          <div className="content">{padNumber(seconds)}</div>
+          <button onClick={changeSeconds(-1)}><i className="fa fa-chevron-down"></i> 1</button>
+          <button onClick={changeSeconds(-5)}><i className="fa fa-chevron-down"></i> 5</button>
+        </div>
       </div>
     </Editor>
   );

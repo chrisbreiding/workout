@@ -62,7 +62,7 @@ export const timers = (state = [newTimer()], action = {}) => {
 
 const newCategory = (categories) => ({
   id: newId(_.map(categories, 'id')),
-  name: 'Category',
+  name: '',
   exerciseIds: [],
 });
 

@@ -11,32 +11,38 @@ function CategoryEditor (props) {
 
   return (
     <Editor
+      className="category-editor"
       onClose={props.onClose}
+      removeText="Remove Category"
       onRemove={() => props.dispatch(removeCategory({ id: props.id }))}
     >
-      <div>
-        <fieldset>
-          <label>Name</label>
-          <input
-            ref={node => nameInput = node}
-            defaultValue={props.name}
-            onChange={() => props.dispatch(updateCategory({ id: props.id, name: nameInput.value }))}
+      <fieldset>
+        <label>Category Name</label>
+        <input
+          ref={node => nameInput = node}
+          defaultValue={props.name}
+          placeholder="Category name..."
+          onChange={() => props.dispatch(updateCategory({ id: props.id, name: nameInput.value }))}
+        />
+      </fieldset>
+      <h3>Exercises</h3>
+      <ul className="editor-exercises">
+        {exercises.map(exercise => (
+          <ExerciseEditor
+            key={exercise.id}
+            weights={props.weights}
+            dispatch={props.dispatch}
+              onRemove={() => props.dispatch(removeExercise({ id: exercise.id, fromId: props.id }))}
+            {...exercise}
           />
-        </fieldset>
-        <h3>Exercises</h3>
-        <ul>
-          {exercises.map(exercise => (
-            <ExerciseEditor
-              key={exercise.id}
-              weights={props.weights}
-              dispatch={props.dispatch}
-                onRemove={() => props.dispatch(removeExercise({ id: exercise.id, fromId: props.id }))}
-              {...exercise}
-            />
-          ))}
-        </ul>
-        <button onClick={() => props.dispatch(addExercise({ toId: props.id }))}>+ Exercise</button>
-      </div>
+      )).concat(
+        <li key="add-exercise" className="add-exercise">
+          <button onClick={() => props.dispatch(addExercise({ toId: props.id }))}>
+            <i className="fa fa-plus"></i>
+          </button>
+        </li>
+      )}
+      </ul>
     </Editor>
   );
 }

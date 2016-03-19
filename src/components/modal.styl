@@ -3,21 +3,18 @@ body.modal-dialog-present {
 }
 
 .modal-dialog-overlay {
+  absolute-full(0);
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
-  bottom: 0;
-  left: 0;
   justify-content: center;
   position: fixed;
-  right: 0;
-  top: 0;
   z-index: 10;
 }
 
 .modal-dialog {
-  background: light-color;
+  absolute-full(0.6em);
+  background: #e3e3e3;
   border-radius: 3px;
   margin: 0.8em;
-  max-height: 90%;
 }

@@ -23,7 +23,7 @@ export default createClass({
             const weights = exercise.weightIds.map(id => this.props.weights[id]);
             return (
               <li key={exercise.id}>
-                <h3>{exercise.name}:</h3>
+                <h3>{exercise.name}</h3>
                 <ul className="weights-list">
                   {weights.map(weight => (
                     <li key={weight.id}>{weight.amount}</li>

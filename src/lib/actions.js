@@ -59,7 +59,7 @@ export const updateCategory = _.partial(dispatchAndSave, 'UPDATE_CATEGORY');
 
 const newExercise = (exercises) => ({
   id: newId(_.map(exercises, 'id')),
-  name: 'Exercise',
+  name: '',
   weightIds: []
 });
 

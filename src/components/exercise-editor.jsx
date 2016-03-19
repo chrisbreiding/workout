@@ -12,38 +12,47 @@ export default function ExerciseEditor (props) {
   let nameInput;
 
   return (
-    <li>
+    <li className="editor-exercise">
       <fieldset>
-        <label>Name</label>
+        <label>Exercise Name</label>
         <input
           ref={node => nameInput = node}
           defaultValue={props.name}
+          placeholder="Exercise Name..."
           onChange={() => props.dispatch(updateExercise({ id: props.id, name: nameInput.value }))}
         />
-        <button onClick={props.onRemove}><i className="fa fa-remove"></i></button>
       </fieldset>
       <h4>Weights</h4>
-      <ul>
+      <ul className="editor-weights">
         {weights.map(weight => {
           let amountInput;
           return (
-            <li key={weight.id}>
-              <fieldset>
-                <input
-                  type="number"
-                  ref={node => amountInput = node}
-                  defaultValue={weight.amount}
-                  onChange={() => props.dispatch(updateWeight({ id: weight.id, amount: sanitizeAmount(amountInput.value) }))}
-                />
-                <button onClick={() => props.dispatch(removeWeight({ id: weight.id, fromId: props.id }))}>
-                  <i className="fa fa-remove"></i>
-                </button>
-              </fieldset>
+            <li key={weight.id} className="editor-weight">
+              <input
+                type="number"
+                ref={node => amountInput = node}
+                defaultValue={weight.amount}
+                onChange={() => props.dispatch(updateWeight({ id: weight.id, amount: sanitizeAmount(amountInput.value) }))}
+              />
+              <button
+                className="remove remove-weight"
+                onClick={() => props.dispatch(removeWeight({ id: weight.id, fromId: props.id }))}
+              >
+                <i className="fa fa-remove"></i>
+              </button>
             </li>
           );
-        })}
+        }).concat(
+          <li key="add-weight" className="add-weight">
+            <button onClick={() => props.dispatch(addWeight({ toId: props.id }))}>
+              <i className="fa fa-plus"></i>
+            </button>
+          </li>
+        )}
       </ul>
-      <button onClick={() => props.dispatch(addWeight({ toId: props.id }))}>+ Weight</button>
+      <button className="remove remove-exercise" onClick={props.onRemove}>
+        <i className="fa fa-remove"></i> Remove Exercise
+      </button>
     </li>
   );
 }
