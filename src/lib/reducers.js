@@ -1,8 +1,7 @@
 import _ from 'lodash';
 
-function newId (ids) {
-  if (!ids.length) { return 0; }
-  return Math.max(...ids) + 1;
+function addItemToArray (arr, data) {
+  return arr.concat(data);
 }
 
 function addItemToObject (obj, data) {
@@ -39,19 +38,12 @@ function removeItemFromObject (obj, data) {
   return _.omit(obj, data.id);
 }
 
-const newTimer = (timers) => ({
-  id: newId(_.map(timers, 'id')),
-  time: 0,
-  timeLeft: 0,
-  isNew: true,
-});
-
 export const timers = (state = [], action = {}) => {
   switch (action.type) {
     case 'REPLACE_DATA':
       return action.data.timers || state;
     case 'ADD_TIMER':
-      return state.concat(newTimer(state));
+      return addItemToArray(state, action.data);
     case 'REMOVE_TIMER':
       return removeItemFromArray(state, action.data);
     case 'UPDATE_TIMER':
@@ -61,19 +53,12 @@ export const timers = (state = [], action = {}) => {
   }
 };
 
-const newCategory = (categories) => ({
-  id: newId(_.map(categories, 'id')),
-  name: '',
-  exerciseIds: [],
-  isNew: true,
-});
-
 export const categories = (state = [], action = {}) => {
   switch (action.type) {
     case 'REPLACE_DATA':
       return action.data.categories || state;
     case 'ADD_CATEGORY':
-      return state.concat(newCategory(state));
+    return addItemToArray(state, action.data);
     case 'REMOVE_CATEGORY':
       return removeItemFromArray(state, action.data);
     case 'UPDATE_CATEGORY':
