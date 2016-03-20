@@ -16,14 +16,14 @@ export default createClass({
     const exercises = this.props.exerciseIds.map(id => this.props.exercises[id]);
     return (
       <li onClick={() => this.setState({ isEditing: true })}>
-        <h2>{this.props.name}</h2>
+        <h2>{this.props.name || '(Unnamed)'}</h2>
 
         <ul className="exercises-list">
           {exercises.map(exercise => {
             const weights = exercise.weightIds.map(id => this.props.weights[id]);
             return (
               <li key={exercise.id}>
-                <h3>{exercise.name}</h3>
+                <h3>{exercise.name || '(Unnamed)'}</h3>
                 <ul className="weights-list">
                   {weights.map(weight => (
                     <li key={weight.id}>{weight.amount}</li>
@@ -36,6 +36,13 @@ export default createClass({
         {this._editor()}
       </li>
     );
+  },
+
+  componentDidMount () {
+    if (this.props.isNew) {
+      this.setState({ isEditing: true });
+      this.props.onUpdate({ id: this.props.id, isNew: false });
+    }
   },
 
   _editor () {

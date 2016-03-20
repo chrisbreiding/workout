@@ -50,6 +50,13 @@ export default createClass({
     );
   },
 
+  componentDidMount () {
+    if (this.props.isNew) {
+      this.setState({ isEditing: true });
+      this.props.onUpdate({ id: this.props.id, isNew: false });
+    }
+  },
+
   _canStart () {
     return this.props.timeLeft > 0 && !this.state.isRunning;
   },

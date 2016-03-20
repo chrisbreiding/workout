@@ -43,9 +43,10 @@ const newTimer = (timers) => ({
   id: newId(_.map(timers, 'id')),
   time: 0,
   timeLeft: 0,
+  isNew: true,
 });
 
-export const timers = (state = [newTimer()], action = {}) => {
+export const timers = (state = [], action = {}) => {
   switch (action.type) {
     case 'REPLACE_DATA':
       return action.data.timers || state;
@@ -64,6 +65,7 @@ const newCategory = (categories) => ({
   id: newId(_.map(categories, 'id')),
   name: '',
   exerciseIds: [],
+  isNew: true,
 });
 
 export const categories = (state = [], action = {}) => {

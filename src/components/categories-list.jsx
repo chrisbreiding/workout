@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as propTypes from '../lib/prop-types';
 import { pluckState } from '../lib/util';
-import { addCategory } from '../lib/actions';
+import { addCategory, updateCategory } from '../lib/actions';
 import Category from './category';
 
 const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
@@ -13,6 +13,7 @@ const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
           key={category.id}
           exercises={exercises}
           weights={weights}
+          onUpdate={data => dispatch(updateCategory(data))}
           {...category}
         />
       ))}
