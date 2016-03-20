@@ -1,3 +1,4 @@
+import cs from 'classnames';
 import React from 'react';
 import { connect } from 'react-redux';
 import * as propTypes from '../lib/prop-types';
@@ -6,7 +7,11 @@ import { addCategory, updateCategory } from '../lib/actions';
 import Category from './category';
 
 const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
-  <div className="categories-list">
+  <div
+    className={cs('categories-list', {
+      'has-categories': categories.length
+    })}
+  >
     <ul>
       {categories.map((category) => (
         <Category
@@ -18,6 +23,7 @@ const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
         />
       ))}
     </ul>
+    <div className="no-categories">No Categories</div>
     <button className="add-category" onClick={() => dispatch(addCategory())}>
       <i className="fa fa-plus"></i>
     </button>

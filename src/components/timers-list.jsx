@@ -1,3 +1,4 @@
+import cs from 'classnames';
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -14,7 +15,11 @@ function playSound () { sound.play(); }
 function stopSound () { sound.stop(); }
 
 const TimersList = ({ timers, dispatch }) => (
-  <div className="timers-list">
+  <div
+    className={cs('timers-list', {
+      'has-timers': timers.length
+    })}
+  >
     <ul>
       {timers.map((timer) => (
         <Timer
@@ -28,6 +33,7 @@ const TimersList = ({ timers, dispatch }) => (
         />
       ))}
     </ul>
+    <div className="no-timers">No Timers</div>
     <button className="add-timer" onClick={() => dispatch(addTimer())}>
       <i className="fa fa-plus"></i>
     </button>

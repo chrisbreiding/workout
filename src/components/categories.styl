@@ -4,6 +4,17 @@
   padding: 0.4em 0.6em;
 }
 
+.no-categories {
+  border: dashed 3px neutral-color;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+
+  .has-categories & {
+    display: none;
+  }
+}
+
 .add-category,
 .add-exercise button {
   display: block;

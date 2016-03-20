@@ -1,6 +1,18 @@
 .timers-list {
   background: dark-color;
   color: light-color;
+  padding-top: 1px;
+}
+
+.no-timers {
+  border: dashed 3px neutral-color;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+
+  .has-timers & {
+    display: none;
+  }
 }
 
 .timer {
@@ -72,7 +84,7 @@
   background: darkest-color;
   box-sizing: border-box;
   color: neutral-color;
-  font-size: 2em;
+  font-size: 1.4em;
   padding: 0.4em;
   width: 100%;
 
