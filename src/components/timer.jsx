@@ -5,6 +5,10 @@ import Editor from './timer-editor';
 import * as propTypes from '../lib/prop-types';
 import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time';
 
+function splitDigits (num) {
+  return `${num}`.split('');
+}
+
 export default createClass({
   propTypes: propTypes.timer,
 
@@ -27,10 +31,17 @@ export default createClass({
       'times-up': this.state.isTimeUp
     });
 
+    const [minDigit1, minDigit2] = splitDigits(padNumber(minutes));
+    const [secDigit1, secDigit2] = splitDigits(padNumber(seconds));
+
     return (
       <li className={className}>
         <span className="time-left" onClick={() => this._edit(true)}>
-          <span>{minutes}:{padNumber(seconds)}</span>
+          <span className="digit">{minDigit1 === '0' ? '' : minDigit1}</span>
+          <span className="digit">{minDigit2}</span>
+          :
+          <span className="digit">{secDigit1}</span>
+          <span className="digit">{secDigit2}</span>
         </span>
         <div className="control">
           <button className="start" onClick={this._start}>
