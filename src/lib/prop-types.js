@@ -5,6 +5,7 @@ export const timer = {
   id: PT.number.isRequired,
   time: PT.number.isRequired,
   timeLeft: PT.number.isRequired,
+  isNew: PT.bool,
 
   onReset: PT.func.isRequired,
   onRemove: PT.func.isRequired,
@@ -19,7 +20,7 @@ export const timers = {
 
 export const weight = {
   id: PT.number.isRequired,
-  amount: PT.number.isRequired
+  amount: PT.number.isRequired,
 };
 
 export const exercise = {
@@ -34,6 +35,7 @@ export const category = {
   id: PT.number.isRequired,
   name: PT.string.isRequired,
   exerciseIds: PT.arrayOf(PT.number).isRequired,
+  isNew: PT.bool,
 
   exercises: PT.object.isRequired,
   weights: PT.object.isRequired,
