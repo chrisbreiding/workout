@@ -1,5 +1,5 @@
 .categories-list h2,
-.add-category {
+.add-category button {
   background: #e3e3e3;
   padding: 0.4em 0.6em;
 }
@@ -15,7 +15,7 @@
   }
 }
 
-.add-category,
+.add-category button,
 .add-exercise button {
   display: block;
   font-size: 1.4em;
@@ -140,5 +140,43 @@
     background: darkest-color;
     border-radius: 3px !important;
     color: light-color;
+  }
+}
+
+@media break-small {
+  .categories-list {
+    flex-grow: 1;
+
+    > ul {
+      display: flex;
+      flex-direction: column;
+
+      > li {
+        border: solid 1px neutral-color;
+        margin: 0.4em;
+      }
+    }
+  }
+}
+
+@media break-medium {
+  .categories-list {
+    > ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > li {
+        min-height: 6em;
+        width: 14em;
+      }
+    }
+  }
+
+  .add-category {
+    position: relative;
+
+    button {
+      absolute-full();
+    }
   }
 }

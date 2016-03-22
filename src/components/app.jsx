@@ -11,7 +11,7 @@ class App extends Component {
 
   render () {
     return (
-      <main>
+      <main className="container">
         <TimersList />
         <CategoriesList />
       </main>

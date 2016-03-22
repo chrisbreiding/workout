@@ -91,7 +91,7 @@ export const updateExercise = _.partial(dispatchAndSave, 'UPDATE_EXERCISE');
 
 const newWeight = (weights) => ({
   id: newId(_.map(weights, 'id')),
-  amount: 10
+  amount: 0
 });
 
 export const addWeight = _.partial(addAndSaveRelationship, { type: 'weight', toType: 'exercise', createFn: newWeight });

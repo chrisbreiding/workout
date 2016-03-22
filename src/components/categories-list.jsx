@@ -21,12 +21,15 @@ const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
           onUpdate={data => dispatch(updateCategory(data))}
           {...category}
         />
-      ))}
+      )).concat(
+        <li key="add-category" className="add-category">
+          <button onClick={() => dispatch(addCategory())}>
+            <i className="fa fa-plus"></i>
+          </button>
+        </li>
+      )}
     </ul>
     <div className="no-categories">No Categories</div>
-    <button className="add-category" onClick={() => dispatch(addCategory())}>
-      <i className="fa fa-plus"></i>
-    </button>
   </div>
 );
 
