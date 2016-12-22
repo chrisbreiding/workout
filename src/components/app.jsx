@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import TimersList from './timers-list';
-import CategoriesList from './categories-list';
-import { retrieveData } from '../lib/actions';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import TimersList from './timers-list'
+import CategoriesList from './categories-list'
+import { retrieveData } from '../lib/actions'
 
 class App extends Component {
   componentDidMount () {
-    this.props.dispatch(retrieveData());
+    this.props.dispatch(retrieveData())
   }
 
   render () {
@@ -15,8 +15,8 @@ class App extends Component {
         <TimersList />
         <CategoriesList />
       </main>
-    );
+    )
   }
 }
 
-export default connect()(App);
+export default connect()(App)

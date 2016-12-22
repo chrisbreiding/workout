@@ -1,27 +1,27 @@
-import React from 'react';
-import Editor from './editor';
-import * as propTypes from '../lib/prop-types';
-import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time';
+import React from 'react'
+import Editor from './editor'
+import * as propTypes from '../lib/prop-types'
+import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time'
 
-function adjustedTime(time) {
+function adjustedTime (time) {
   if (time < 0) {
-    return 60 + time;
+    return 60 + time
   } else {
-    return time >= 60 ? time - 60 : time;
+    return time >= 60 ? time - 60 : time
   }
 }
 
 function TimerEditor (props) {
-  const { minutes, seconds } = toMinutesAndSeconds(props.time);
+  const { minutes, seconds } = toMinutesAndSeconds(props.time)
 
-  const changeMinutes = amount => () => {
-    const time = fromMinutesAndSeconds(adjustedTime(minutes + amount), seconds);
-    props.onUpdate({ id: props.id, time: time, timeLeft: time });
-  };
-  const changeSeconds = amount => () => {
-    const time = fromMinutesAndSeconds(minutes, adjustedTime(seconds + amount));
-    props.onUpdate({ id: props.id, time: time, timeLeft: time });
-  };
+  const changeMinutes = (amount) => () => {
+    const time = fromMinutesAndSeconds(adjustedTime(minutes + amount), seconds)
+    props.onUpdate({ id: props.id, time, timeLeft: time })
+  }
+  const changeSeconds = (amount) => () => {
+    const time = fromMinutesAndSeconds(minutes, adjustedTime(seconds + amount))
+    props.onUpdate({ id: props.id, time, timeLeft: time })
+  }
 
   return (
     <Editor className="timer-editor" onRemove={props.onRemove} onClose={props.onClose}>
@@ -49,9 +49,9 @@ function TimerEditor (props) {
         </div>
       </div>
     </Editor>
-  );
+  )
 }
 
-TimerEditor.propTypes = propTypes.timer;
+TimerEditor.propTypes = propTypes.timer
 
-export default TimerEditor;
+export default TimerEditor

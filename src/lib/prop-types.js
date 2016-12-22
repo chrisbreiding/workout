@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import { PropTypes as PT } from 'react';
+import _ from 'lodash'
+import { PropTypes as PT } from 'react'
 
 export const timer = {
   id: PT.number.isRequired,
@@ -11,17 +11,17 @@ export const timer = {
   onRemove: PT.func.isRequired,
   onUpdate: PT.func.isRequired,
   onPlaySound: PT.func.isRequired,
-  onStopSound: PT.func.isRequired
-};
+  onStopSound: PT.func.isRequired,
+}
 
 export const timers = {
-  timers: PT.arrayOf(PT.shape(_.omitBy(timer, _.isFunction))).isRequired
-};
+  timers: PT.arrayOf(PT.shape(_.omitBy(timer, _.isFunction))).isRequired,
+}
 
 export const weight = {
   id: PT.number.isRequired,
   amount: PT.number.isRequired,
-};
+}
 
 export const exercise = {
   id: PT.number.isRequired,
@@ -29,7 +29,7 @@ export const exercise = {
   weightIds: PT.arrayOf(PT.number).isRequired,
 
   weights: PT.object.isRequired,
-};
+}
 
 export const category = {
   id: PT.number.isRequired,
@@ -39,8 +39,8 @@ export const category = {
 
   exercises: PT.object.isRequired,
   weights: PT.object.isRequired,
-};
+}
 
 export const categories = {
-  categories: PT.arrayOf(PT.shape(_.omitBy(category, _.isFunction))).isRequired
-};
+  categories: PT.arrayOf(PT.shape(_.omitBy(category, _.isFunction))).isRequired,
+}

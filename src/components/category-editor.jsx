@@ -1,14 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Editor from './editor';
-import ExerciseEditor from './exercise-editor';
-import FocusedInput from './focused-input';
-import * as propTypes from '../lib/prop-types';
-import { removeCategory, updateCategory, addExercise, removeExercise } from '../lib/actions';
+import React from 'react'
+import { connect } from 'react-redux'
+import Editor from './editor'
+import ExerciseEditor from './exercise-editor'
+import FocusedInput from './focused-input'
+import * as propTypes from '../lib/prop-types'
+import { removeCategory, updateCategory, addExercise, removeExercise } from '../lib/actions'
 
 function CategoryEditor (props) {
-  const exercises = props.exerciseIds.map(id => props.exercises[id]);
-  let nameInput;
+  const exercises = props.exerciseIds.map((id) => props.exercises[id])
+  let nameInput
 
   return (
     <Editor
@@ -20,7 +20,7 @@ function CategoryEditor (props) {
       <fieldset>
         <label>Category Name</label>
         <FocusedInput
-          ref={node => nameInput = node}
+          ref={(node) => nameInput = node}
           defaultValue={props.name}
           placeholder="Category name..."
           onChange={() => props.dispatch(updateCategory({ id: props.id, name: nameInput.getValue() }))}
@@ -28,7 +28,7 @@ function CategoryEditor (props) {
       </fieldset>
       <h3>Exercises</h3>
       <ul className="editor-exercises">
-        {exercises.map(exercise => (
+        {exercises.map((exercise) => (
           <ExerciseEditor
             key={exercise.id}
             weights={props.weights}
@@ -45,9 +45,9 @@ function CategoryEditor (props) {
       )}
       </ul>
     </Editor>
-  );
+  )
 }
 
-CategoryEditor.propTypes = propTypes.category;
+CategoryEditor.propTypes = propTypes.category
 
-export default connect()(CategoryEditor);
+export default connect()(CategoryEditor)

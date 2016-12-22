@@ -1,5 +1,5 @@
-import React from 'react';
-import Modal from './modal';
+import React from 'react'
+import Modal from './modal'
 
 export default (props) => (
   <Modal className={`editor ${props.className || ''}`}>
@@ -13,4 +13,4 @@ export default (props) => (
       <button className="ok" onClick={props.onClose}>OK</button>
     </footer>
   </Modal>
-);
+)

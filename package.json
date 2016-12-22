@@ -16,7 +16,7 @@
     "classnames": "^2.2.3",
     "fastclick": "^1.0.6",
     "font-awesome": "^4.7.0",
-    "howler": "^1.1.29",
+    "howler": "^2.0.2",
     "lodash": "^4.3.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
