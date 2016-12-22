@@ -5,7 +5,7 @@
 }
 
 .no-categories {
-  border: dashed 3px neutral-color;
+  border: dashed 3px $neutral-color;
   margin: 1em;
   padding: 1em;
   text-align: center;
@@ -42,7 +42,7 @@
 
 .weights-list {
   li {
-    border-left: solid 1px dark-color;
+    border-left: solid 1px $dark-color;
     display: inline-block;
     margin: 0.4em 0;
     padding: 0 0.4em;
@@ -72,15 +72,15 @@
     background: #FFF;
     box-sizing: border-box;
     border: none;
-    border-bottom: solid 1px neutral-color;
-    border-top: solid 1px neutral-color;
+    border-bottom: solid 1px $neutral-color;
+    border-top: solid 1px $neutral-color;
     outline: none;
     padding: 0.4em 0.6em;
     width: 100%;
   }
 
   input:focus {
-    border-color: primary-color;
+    border-color: $primary-color;
   }
 
   h3 {
@@ -98,8 +98,8 @@
 
 .editor-exercise,
 .add-exercise {
-  background: light-color;
-  border: solid 1px neutral-color;
+  background: $light-color;
+  border: solid 1px $neutral-color;
   margin: 0.4em 0;
   position: relative;
 }
@@ -115,7 +115,7 @@
   padding: 0.2em;
 
   button {
-    background: neutral-color;
+    background: $neutral-color;
     border-radius: 0 3px 3px 0 !important;
   }
 }
@@ -127,7 +127,7 @@
   width: 6em;
 
   input {
-    border-left: solid 1px neutral-color;
+    border-left: solid 1px $neutral-color;
     border-radius: 3px 0 0 3px;
     padding: 0.4em;
     text-align: center;
@@ -137,13 +137,13 @@
 
 .add-weight {
   button {
-    background: darkest-color;
+    background: $darkest-color;
     border-radius: 3px !important;
-    color: light-color;
+    color: $light-color;
   }
 }
 
-@media break-small {
+@media #{$break-small} {
   .categories-list {
     flex-grow: 1;
 
@@ -152,14 +152,14 @@
       flex-direction: column;
 
       > li {
-        border: solid 1px neutral-color;
+        border: solid 1px $neutral-color;
         margin: 0.4em;
       }
     }
   }
 }
 
-@media break-medium {
+@media #{$break-medium} {
   .categories-list {
     > ul {
       flex-direction: row;
@@ -176,7 +176,7 @@
     position: relative;
 
     button {
-      absolute-full();
+      @include absolute-full();
     }
   }
 }

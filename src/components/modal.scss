@@ -3,7 +3,7 @@ body.modal-dialog-present {
 }
 
 .modal-dialog-overlay {
-  absolute-full();
+  @include absolute-full();
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
@@ -12,7 +12,7 @@ body.modal-dialog-present {
 }
 
 .modal-dialog {
-  absolute-full(0.6em);
+  @include absolute-full(0.6em);
   background: #e3e3e3;
   border-radius: 3px;
   margin: 0.8em;

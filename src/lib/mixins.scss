@@ -1,0 +1,12 @@
+@mixin rounded-button() {
+  border-radius: 3px;
+  padding: 0.4em 0.6em;
+}
+
+@mixin absolute-full($margin: 0) {
+  bottom: $margin;
+  left: $margin;
+  position: absolute;
+  right: $margin;
+  top: $margin;
+}

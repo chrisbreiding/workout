@@ -1,4 +1,4 @@
-@media break-small {
+@media #{$break-small} {
   .container {
     display: flex;
     flex-direction: row;
