@@ -1,4 +1,4 @@
-import fastclick from 'fastclick';
+import FastClick from 'fastclick';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -7,7 +7,7 @@ import { render } from 'react-dom';
 import * as reducers from './lib/reducers';
 import App from './components/app';
 
-fastclick.attach(document.body);
+new FastClick(document.body)
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 const rootReducer = combineReducers(reducers);
