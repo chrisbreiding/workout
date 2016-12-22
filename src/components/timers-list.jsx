@@ -1,18 +1,9 @@
 import cs from 'classnames'
-import howler from 'howler'
 import React from 'react'
 import { connect } from 'react-redux'
 import * as propTypes from '../lib/prop-types'
 import { addTimer, removeTimer, updateTimer } from '../lib/actions'
 import Timer from './timer'
-
-const sound = new howler.Howl({
-  src: ['sounds/shell.mp3'],
-  loop: true,
-})
-
-function playSound () { sound.play() }
-function stopSound () { sound.stop() }
 
 const TimersList = ({ timers, dispatch }) => (
   <div
@@ -27,8 +18,6 @@ const TimersList = ({ timers, dispatch }) => (
           onUpdate={(data) => dispatch(updateTimer(data))}
           onReset={() => dispatch(updateTimer({ id: timer.id, timeLeft: timer.time }))}
           onRemove={() => dispatch(removeTimer({ id: timer.id }))}
-          onPlaySound={playSound}
-          onStopSound={stopSound}
           {...timer}
         />
       ))}

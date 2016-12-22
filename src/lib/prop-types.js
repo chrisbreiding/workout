@@ -10,8 +10,6 @@ export const timer = {
   onReset: PT.func.isRequired,
   onRemove: PT.func.isRequired,
   onUpdate: PT.func.isRequired,
-  onPlaySound: PT.func.isRequired,
-  onStopSound: PT.func.isRequired,
 }
 
 export const timers = {

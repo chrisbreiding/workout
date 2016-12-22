@@ -1,4 +1,5 @@
 import cs from 'classnames'
+import howler from 'howler'
 import React, { Component } from 'react'
 import Editor from './timer-editor'
 import * as propTypes from '../lib/prop-types'
@@ -86,13 +87,18 @@ export default class Timer extends Component {
   }
 
   _reset = () => {
-    this.props.onStopSound()
+    this.sound.stop()
     this.setState({ isTimeUp: false })
     this.props.onReset()
   }
 
   _start = () => {
     if (this.state.isRunning) { return }
+
+    this.sound = new howler.Howl({
+      src: ['sounds/shell.mp3'],
+      loop: true,
+    })
 
     this.setState({ isRunning: true })
 
@@ -108,7 +114,7 @@ export default class Timer extends Component {
   _timesUp () {
     this._pause()
     this.setState({ isTimeUp: true })
-    this.props.onPlaySound()
+    this.sound.play()
   }
 
   _pause = () => {
