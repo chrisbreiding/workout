@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "build-prod": "zunder build-prod",
+    "serve-prod": "zunder serve-prod --port 8000",
     "start": "zunder watch",
     "deploy": "zunder deploy"
   },
@@ -10,7 +12,7 @@
     "babel-eslint": "^7.1.1",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
-    "zunder": "^4.0.2"
+    "zunder": "^4.0.3"
   },
   "dependencies": {
     "classnames": "^2.2.3",
