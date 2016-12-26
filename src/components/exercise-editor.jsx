@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-// import FocusedInput from './focused-input'
+import FocusedInput from './focused-input'
 import * as propTypes from '../lib/prop-types'
 import { updateExercise, addWeight, removeWeight, updateWeight } from '../lib/actions'
 
@@ -16,11 +16,12 @@ export default function ExerciseEditor (props) {
     <li className="editor-exercise">
       <fieldset>
         <label>Exercise Name</label>
-        <input
+        <FocusedInput
           ref={(node) => nameInput = node}
           defaultValue={props.name}
+          shouldFocus={props.isNew}
           placeholder="Exercise Name..."
-          onChange={() => props.dispatch(updateExercise({ id: props.id, name: nameInput.value }))}
+          onChange={() => props.dispatch(updateExercise({ id: props.id, name: nameInput.value, isNew: false }))}
         />
       </fieldset>
       <h4>Weights</h4>
@@ -29,11 +30,12 @@ export default function ExerciseEditor (props) {
           let amountInput
           return (
             <li key={weight.id} className="editor-weight">
-              <input
+              <FocusedInput
                 type="number"
                 ref={(node) => amountInput = node}
                 defaultValue={weight.amount}
-                onChange={() => props.dispatch(updateWeight({ id: weight.id, amount: sanitizeAmount(amountInput.value) }))}
+                shouldFocus={weight.isNew}
+                onChange={() => props.dispatch(updateWeight({ id: weight.id, amount: sanitizeAmount(amountInput.value), isNew: false }))}
               />
               <button
                 className="remove remove-weight"

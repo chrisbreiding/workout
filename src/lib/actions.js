@@ -82,6 +82,7 @@ const newExercise = (exercises) => ({
   id: newId(_.map(exercises, 'id')),
   name: '',
   weightIds: [],
+  isNew: true,
 })
 
 export const addExercise = _.partial(addAndSaveRelationship, { type: 'exercise', toType: 'category', createFn: newExercise })
@@ -92,6 +93,7 @@ export const updateExercise = _.partial(dispatchAndSave, 'UPDATE_EXERCISE')
 const newWeight = (weights) => ({
   id: newId(_.map(weights, 'id')),
   amount: 0,
+  isNew: true,
 })
 
 export const addWeight = _.partial(addAndSaveRelationship, { type: 'weight', toType: 'exercise', createFn: newWeight })

@@ -38,7 +38,7 @@ export default class Category extends Component {
   componentDidMount () {
     if (this.props.isNew) {
       this.setState({ isEditing: true })
-      this.props.onUpdate({ id: this.props.id, isNew: false })
+      this.props.onUpdate({ id: this.props.id })
     }
   }
 
@@ -48,9 +48,14 @@ export default class Category extends Component {
     return (
       <Editor
         {...this.props}
-        onClose={() => this.setState({ isEditing: false })}
+        onClose={this._endEditing}
         onRemove={this.props.onRemove}
       />
     )
+  }
+
+  _endEditing = () => {
+    this.setState({ isEditing: false })
+    this.props.onUpdate({ id: this.props.id, isNew: false })
   }
 }

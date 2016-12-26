@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Editor from './editor'
 import ExerciseEditor from './exercise-editor'
-// import FocusedInput from './focused-input'
+import FocusedInput from './focused-input'
 import * as propTypes from '../lib/prop-types'
 import { removeCategory, updateCategory, addExercise, removeExercise } from '../lib/actions'
 
@@ -19,9 +19,10 @@ function CategoryEditor (props) {
     >
       <fieldset>
         <label>Category Name</label>
-        <input
+        <FocusedInput
           ref={(node) => nameInput = node}
           defaultValue={props.name}
+          shouldFocus={props.isNew}
           placeholder="Category name..."
           onChange={() => props.dispatch(updateCategory({ id: props.id, name: nameInput.value }))}
         />

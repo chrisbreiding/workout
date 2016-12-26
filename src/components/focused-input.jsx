@@ -9,12 +9,14 @@ export default class FocusedInput extends Component {
     this._focusDomNode(this.refs.input)
   }
 
-  getValue () {
+  get value () {
     return this.refs.input.value
   }
 
   _focusDomNode (domNode) {
-    domNode.focus()
-    domNode.value = domNode.value // trick to set cursor to end of text
+    if (this.props.shouldFocus) {
+      domNode.focus()
+      domNode.value = domNode.value // trick to set cursor to end of text
+    }
   }
 }
