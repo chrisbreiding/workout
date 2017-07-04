@@ -12,6 +12,7 @@ const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
       'has-categories': categories.length,
     })}
   >
+    <div className="no-categories">No Categories</div>
     <ul>
       {categories.map((category) => (
         <Category
@@ -29,7 +30,6 @@ const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
         </li>
       )}
     </ul>
-    <div className="no-categories">No Categories</div>
   </div>
 )
 
