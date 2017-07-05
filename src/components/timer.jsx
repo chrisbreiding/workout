@@ -1,9 +1,10 @@
 import cs from 'classnames'
-import howler from 'howler'
 import React, { Component } from 'react'
+
 import Editor from './timer-editor'
 import * as propTypes from '../lib/prop-types'
 import { toMinutesAndSeconds, padNumber } from '../lib/time'
+import Sound from './sound'
 
 function splitDigits (num) {
   return `${num}`.split('')
@@ -87,17 +88,17 @@ export default class Timer extends Component {
   }
 
   _reset = () => {
-    this.sound.stop()
+    this.sound && this.sound.stop()
     this.setState({ isTimeUp: false })
     this.props.onReset()
   }
 
   _start = () => {
-    if (this.state.isRunning) { return }
+    if (this.state.isRunning) return
 
-    this.sound = new howler.Howl({
-      src: ['sounds/shell.mp3'],
-      loop: true,
+    this.sound = new Sound({
+      voices: ['Bells', 'Ting-Ting'],
+      repeat: true,
     })
 
     this.setState({ isRunning: true })
