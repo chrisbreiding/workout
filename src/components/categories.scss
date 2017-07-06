@@ -1,7 +1,14 @@
-.categories-list h2,
-.add-category button {
-  background: #e3e3e3;
-  padding: 0.4em 0.6em;
+.categories-list {
+  background: $tertiary-color;
+  color: $light-color;
+
+  .empty-list {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .add {
+    color: $tertiary-color;
+  }
 }
 
 .no-categories {
@@ -42,7 +49,7 @@
 
 .weights-list {
   li {
-    border-left: solid 1px $dark-color;
+    border-left: solid 1px rgba(255, 255, 255, 0.6);
     display: inline-block;
     margin: 0.4em 0;
     padding: 0 0.4em;
@@ -80,7 +87,7 @@
   }
 
   input:focus {
-    border-color: $primary-color;
+    border-color: $action-color;
   }
 
   h3 {
@@ -98,7 +105,6 @@
 
 .editor-exercise,
 .add-exercise {
-  background: $light-color;
   border: solid 1px $neutral-color;
   margin: 0.4em 0;
   position: relative;
@@ -140,43 +146,5 @@
     background: $darkest-color;
     border-radius: 3px !important;
     color: $light-color;
-  }
-}
-
-@media #{$break-small} {
-  .categories-list {
-    flex-grow: 1;
-
-    > ul {
-      display: flex;
-      flex-direction: column;
-
-      > li {
-        border: solid 1px $neutral-color;
-        margin: 0.4em;
-      }
-    }
-  }
-}
-
-@media #{$break-medium} {
-  .categories-list {
-    > ul {
-      flex-direction: row;
-      flex-wrap: wrap;
-
-      > li {
-        min-height: 6em;
-        width: 14em;
-      }
-    }
-  }
-
-  .add-category {
-    position: relative;
-
-    button {
-      @include absolute-full();
-    }
   }
 }

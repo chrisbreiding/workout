@@ -53,6 +53,21 @@ export const timers = (state = [], action = {}) => {
   }
 }
 
+export const routines = (state = [], action = {}) => {
+  switch (action.type) {
+    case 'REPLACE_DATA':
+      return action.data.routines || state
+    case 'ADD_ROUTINE':
+      return addItemToArray(state, action.data)
+    case 'REMOVE_ROUTINE':
+      return removeItemFromArray(state, action.data)
+    case 'UPDATE_ROUTINE':
+      return updateItemInArray(state, action.data)
+    default:
+      return state
+  }
+}
+
 export const categories = (state = [], action = {}) => {
   switch (action.type) {
     case 'REPLACE_DATA':

@@ -1,0 +1,40 @@
+.list {
+  flex-grow: 1;
+  min-width: 23em;
+
+  h2 {
+    background: rgba(255, 255, 255, 0.4);
+    font-size: 1.1em;
+    padding: 0.4em 0.6em;
+  }
+}
+
+.empty-list {
+  border: dashed 3px $neutral-color;
+  display: none;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+
+  .is-empty & {
+    display: block;
+  }
+}
+
+.add {
+  background: rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  color: $neutral-color;
+  font-size: 1.4em;
+  padding: 0.4em;
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  i {
+    margin-right: 0.4em;
+  }
+}

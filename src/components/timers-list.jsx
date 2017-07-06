@@ -7,8 +7,8 @@ import Timer from './timer'
 
 const TimersList = ({ timers, dispatch }) => (
   <div
-    className={cs('timers-list', {
-      'has-timers': timers.length,
+    className={cs('list timers-list', {
+      'is-empty': !timers.length,
     })}
   >
     <ul>
@@ -22,8 +22,8 @@ const TimersList = ({ timers, dispatch }) => (
         />
       ))}
     </ul>
-    <div className="no-timers">No Timers</div>
-    <button className="add-timer" onClick={() => dispatch(addTimer())}>
+    <div className="empty-list">No Timers</div>
+    <button className="add add-timer" onClick={() => dispatch(addTimer())}>
       <i className="fa fa-plus"></i>
     </button>
   </div>

@@ -8,11 +8,10 @@ import Category from './category'
 
 const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
   <div
-    className={cs('categories-list', {
-      'has-categories': categories.length,
+    className={cs('list categories-list', {
+      'is-empty': !categories.length,
     })}
   >
-    <div className="no-categories">No Categories</div>
     <ul>
       {categories.map((category) => (
         <Category
@@ -22,14 +21,12 @@ const CategoriesList = ({ categories, exercises, weights, dispatch }) => (
           onUpdate={(data) => dispatch(updateCategory(data))}
           {...category}
         />
-      )).concat(
-        <li key="add-category" className="add-category">
-          <button onClick={() => dispatch(addCategory())}>
-            <i className="fa fa-plus"></i>
-          </button>
-        </li>
-      )}
+      ))}
     </ul>
+    <div className="empty-list">No Categories</div>
+    <button className="add" onClick={() => dispatch(addCategory())}>
+      <i className="fa fa-plus"></i>
+    </button>
   </div>
 )
 

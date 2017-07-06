@@ -1,25 +1,31 @@
 .timers-list {
-  background: $dark-color;
+  background: $primary-color;
   color: $light-color;
   padding-top: 1px;
-}
 
-.no-timers {
-  border: dashed 3px $neutral-color;
-  margin: 1em;
-  padding: 1em;
-  text-align: center;
+  .empty-list {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
 
-  .has-timers & {
-    display: none;
+  .add {
+    color: $primary-color;
   }
 }
 
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .timer {
-  border-top: solid 1px lighten($dark-color, 10%);
-  border-bottom: solid 1px $darkest-color;
+  border-top: solid 1px rgba(255, 255, 255, 0.4);
   display: flex;
   padding: 0.4em 0.6em;
+
+  &:first-child {
+    border-top: none;
+  }
 
   .time-left {
     font-family: digital, monospace;
@@ -40,22 +46,16 @@
   .start,
   .pause,
   .reset {
+    color: $light-color;
     display: none;
     flex-grow: 1;
     font-size: 3em;
+    opacity: 0.8;
     text-align: center;
-  }
 
-  .start {
-    color: $success-color;
-  }
-
-  .pause {
-    color: $primary-color;
-  }
-
-  .reset {
-    color: $error-color;
+    &:hover {
+      opacity: 1.0
+    }
   }
 
   &.can-start .start,
@@ -65,31 +65,25 @@
   }
 
   &.times-up {
+    background: $light-color;
+    color: $primary-color;
+
     .time-left {
-      color: red;
+      animation: blink 1.5s infinite;
     }
 
     .start,
     .pause {
       display: none;
     }
+
+    .reset {
+      color: $primary-color;
+    }
   }
 
   span {
     display: inline-block;
-  }
-}
-
-.add-timer {
-  background: $darkest-color;
-  box-sizing: border-box;
-  color: $neutral-color;
-  font-size: 1.4em;
-  padding: 0.4em;
-  width: 100%;
-
-  i {
-    margin-right: 0.4em;
   }
 }
 
@@ -115,11 +109,5 @@
 
   input:last-of-type {
     margin-left: 0.6em;
-  }
-}
-
-@media #{$break-small} {
-  .timers-list {
-    flex-shrink: 0;
   }
 }

@@ -1,6 +1,5 @@
-@media #{$break-small} {
-  .container {
-    display: flex;
-    flex-direction: row;
-  }
+.container {
+  @include absolute-full();
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -66,6 +66,17 @@ export const removeTimer = _.partial(dispatchAndSave, 'REMOVE_TIMER')
 export const updateTimer = _.partial(dispatchAndSave, 'UPDATE_TIMER')
 
 
+const newRoutine = (routines) => ({
+  id: newId(_.map(routines, 'id')),
+  name: '(Unnamed)',
+  type: 'timer',
+})
+
+export const addRoutine = _.partial(addAndSaveSingle, { type: 'routine', pluralType: 'routines', createFn: newRoutine })
+export const removeRoutine = _.partial(dispatchAndSave, 'REMOVE_ROUTINE')
+export const updateRoutine = _.partial(dispatchAndSave, 'UPDATE_ROUTINE')
+
+
 const newCategory = (categories) => ({
   id: newId(_.map(categories, 'id')),
   name: '',

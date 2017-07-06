@@ -8,12 +8,12 @@ body.modal-dialog-present {
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
+  overflow: auto;
+  padding: 0.6em;
   z-index: 10;
 }
 
 .modal-dialog {
-  @include absolute-full(0.6em);
-  background: #e3e3e3;
-  border-radius: 3px;
-  margin: 0.8em;
+  background: $light-color;
+  margin: auto;
 }
