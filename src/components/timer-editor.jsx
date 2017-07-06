@@ -1,53 +1,37 @@
 import React from 'react'
 import Editor from './editor'
 import * as propTypes from '../lib/prop-types'
-import { toMinutesAndSeconds, fromMinutesAndSeconds, padNumber } from '../lib/time'
+import { toMinutesAndSeconds, fromMinutesAndSeconds } from '../lib/time'
 
+// keep time from 0 to 59
 function adjustedTime (time) {
-  if (time < 0) {
-    return 60 + time
-  } else {
-    return time >= 60 ? time - 60 : time
-  }
+  return time < 0 ? 60 + time : time % 60
 }
 
-function TimerEditor (props) {
+const TimerEditor = (props) => {
   const { minutes, seconds } = toMinutesAndSeconds(props.time)
 
-  const changeMinutes = (amount) => () => {
-    const time = fromMinutesAndSeconds(adjustedTime(minutes + amount), seconds)
+  const change = (part) => (e) => {
+    const value = Number(e.target.value)
+    if (isNaN(value)) return
+
+    const time = fromMinutesAndSeconds({
+      minutes: part === 'minutes' ? adjustedTime(value) : minutes,
+      seconds: part === 'seconds' ? adjustedTime(value) : seconds,
+    })
     props.onUpdate({ id: props.id, time, timeLeft: time })
   }
-  const changeSeconds = (amount) => () => {
-    const time = fromMinutesAndSeconds(minutes, adjustedTime(seconds + amount))
-    props.onUpdate({ id: props.id, time, timeLeft: time })
+
+  const select = (e) => {
+    e.target.setSelectionRange(0, e.target.value.length)
   }
 
   return (
     <Editor className="timer-editor" onRemove={props.onRemove} onClose={props.onClose}>
-      <div>
-        <div className="wrap">
-          <button onClick={changeMinutes(5)}><i className="fa fa-chevron-up"></i> 5</button>
-          <button onClick={changeMinutes(1)}><i className="fa fa-chevron-up"></i> 1</button>
-          <div className="content">{padNumber(minutes)}</div>
-          <button onClick={changeMinutes(-1)}><i className="fa fa-chevron-down"></i> 1</button>
-          <button onClick={changeMinutes(-5)}><i className="fa fa-chevron-down"></i> 5</button>
-        </div>
-        <div className="wrap separator">
-          <button></button>
-          <button></button>
-          <div className="content">:</div>
-          <button></button>
-          <button></button>
-        </div>
-        <div className="wrap">
-          <button onClick={changeSeconds(5)}><i className="fa fa-chevron-up"></i> 5</button>
-          <button onClick={changeSeconds(1)}><i className="fa fa-chevron-up"></i> 1</button>
-          <div className="content">{padNumber(seconds)}</div>
-          <button onClick={changeSeconds(-1)}><i className="fa fa-chevron-down"></i> 1</button>
-          <button onClick={changeSeconds(-5)}><i className="fa fa-chevron-down"></i> 5</button>
-        </div>
-      </div>
+      <input type="tel" value={minutes} onChange={change('minutes')} onFocus={select} />
+      <label>m</label>
+      <input type="tel" value={seconds} onChange={change('seconds')} onFocus={select} />
+      <label>s</label>
     </Editor>
   )
 }

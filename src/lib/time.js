@@ -9,6 +9,6 @@ export function toMinutesAndSeconds (totalSeconds) {
   return { minutes, seconds }
 }
 
-export function fromMinutesAndSeconds (minutes, seconds) {
+export function fromMinutesAndSeconds ({ minutes, seconds }) {
   return minutes * 60 + seconds
 }
