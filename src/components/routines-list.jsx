@@ -6,7 +6,7 @@ import { pluckState } from '../lib/util'
 import { addRoutine, updateRoutine } from '../lib/actions'
 import Routine from './routine'
 
-const RoutinesList = ({ routines, dispatch }) => (
+const RoutinesList = ({ activities, routines, dispatch }) => (
   <div
     className={cs('list routines-list', {
       'is-empty': !routines.length,
@@ -16,6 +16,7 @@ const RoutinesList = ({ routines, dispatch }) => (
       {routines.map((routine) => (
         <Routine
           key={routine.id}
+          activities={activities}
           onUpdate={(data) => dispatch(updateRoutine(data))}
           {...routine}
         />
@@ -30,4 +31,4 @@ const RoutinesList = ({ routines, dispatch }) => (
 
 RoutinesList.propTypes = propTypes.routines
 
-export default connect(pluckState('routines'))(RoutinesList)
+export default connect(pluckState('activities', 'routines'))(RoutinesList)

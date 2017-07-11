@@ -22,14 +22,6 @@
   }
 }
 
-.add-category button,
-.add-exercise button {
-  display: block;
-  font-size: 1.4em;
-  text-align: center;
-  width: 100%;
-}
-
 .exercises-list {
   h3 {
     &:after {
@@ -57,41 +49,6 @@
     &:first-child {
       border: none;
     }
-  }
-}
-
-.category-editor {
-  fieldset {
-    margin: 0.6em 0;
-  }
-
-  label,
-  input {
-    display: block;
-  }
-
-  label {
-    font-size: 0.8em;
-    margin: 0.4em 0.8em;
-  }
-
-  input {
-    background: #FFF;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: solid 1px $neutral-color;
-    border-top: solid 1px $neutral-color;
-    outline: none;
-    padding: 0.4em 0.6em;
-    width: 100%;
-  }
-
-  input:focus {
-    border-color: $action-color;
-  }
-
-  h3 {
-    margin: 0.4em;
   }
 }
 

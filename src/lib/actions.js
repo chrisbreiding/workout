@@ -18,9 +18,9 @@ function addAndSaveSingle ({ type, pluralType, createFn }) {
   }
 }
 
-function addAndSaveRelationship ({ type, toType, createFn }, { toId }) {
+function addAndSaveRelationship ({ type, pluralType, toType, createFn }, { toId }) {
   return (dispatch, getState) => {
-    const item = createFn(getState()[`${type}s`])
+    const item = createFn(getState()[pluralType || `${type}s`])
     dispatch({ type: `ADD_${type.toUpperCase()}`, data: item })
     dispatch({
       type: `ADD_${type.toUpperCase()}_TO_${toType.toUpperCase()}`,
@@ -68,13 +68,25 @@ export const updateTimer = _.partial(dispatchAndSave, 'UPDATE_TIMER')
 
 const newRoutine = (routines) => ({
   id: newId(_.map(routines, 'id')),
-  name: '(Unnamed)',
-  type: 'timer',
+  name: '',
+  activityIds: [],
+  isNew: true,
 })
 
 export const addRoutine = _.partial(addAndSaveSingle, { type: 'routine', pluralType: 'routines', createFn: newRoutine })
 export const removeRoutine = _.partial(dispatchAndSave, 'REMOVE_ROUTINE')
 export const updateRoutine = _.partial(dispatchAndSave, 'UPDATE_ROUTINE')
+
+const newActivity = (activities) => ({
+  id: newId(_.map(activities, 'id')),
+  name: '',
+  type: 'timer',
+  isNew: true,
+})
+
+export const addActivity = _.partial(addAndSaveRelationship, { type: 'activity', pluralType: 'activities', toType: 'routine', createFn: newActivity })
+export const removeActivity = _.partial(removeAndSave, { type: 'activity', fromType: 'routine' })
+export const updateActivity = _.partial(dispatchAndSave, 'UPDATE_ACTIVITY')
 
 
 const newCategory = (categories) => ({

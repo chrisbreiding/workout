@@ -11,10 +11,12 @@
   }
 }
 
-.add-routine button,
-.add-exercise button {
-  display: block;
-  font-size: 1.4em;
-  text-align: center;
-  width: 100%;
+.routine-editor {
+  .modal-dialog {
+    background: $secondary-color;
+
+    .add {
+      color: $secondary-color;
+    }
+  }
 }

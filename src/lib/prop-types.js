@@ -43,10 +43,19 @@ export const categories = {
   categories: PT.arrayOf(PT.shape(_.omitBy(category, _.isFunction))).isRequired,
 }
 
-export const routine = {
+
+export const activity = {
   id: PT.number.isRequired,
   name: PT.string.isRequired,
   type: PT.string.isRequired,
+  isNew: PT.bool,
+}
+
+export const routine = {
+  id: PT.number.isRequired,
+  name: PT.string.isRequired,
+  activityIds: PT.arrayOf(PT.number).isRequired,
+  isNew: PT.bool,
 }
 
 export const routines = {

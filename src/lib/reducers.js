@@ -63,6 +63,36 @@ export const routines = (state = [], action = {}) => {
       return removeItemFromArray(state, action.data)
     case 'UPDATE_ROUTINE':
       return updateItemInArray(state, action.data)
+    case 'ADD_ACTIVITY_TO_ROUTINE': {
+      const routine = _.find(state, { id: action.toId })
+      return updateItemInArray(state, {
+        id: action.toId,
+        activityIds: routine.activityIds.concat(action.id),
+      })
+    }
+    case 'REMOVE_ACTIVITY_FROM_ROUTINE': {
+      const routine = _.find(state, { id: action.fromId })
+      const index = _.findIndex(routine.activityIds, (id) => id === action.id)
+      return updateItemInArray(state, {
+        id: action.fromId,
+        activityIds: removeItemAtIndex(routine.activityIds, index),
+      })
+    }
+    default:
+      return state
+  }
+}
+
+export const activities = (state = {}, action = {}) => {
+  switch (action.type) {
+    case 'REPLACE_DATA':
+      return action.data.activities || state
+    case 'ADD_ACTIVITY':
+      return addItemToObject(state, action.data)
+    case 'REMOVE_ACTIVITY':
+      return removeItemFromObject(state, action.data)
+    case 'UPDATE_ACTIVITY':
+      return updateItemInObject(state, action.data)
     default:
       return state
   }
